@@ -1,0 +1,19 @@
+# (c) All rights reserved. ECOLE POLYTECHNIQUE FEDERALE DE LAUSANNE, Switzerland, VPSI, 2020
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: gta-api-route
+  labels:
+    app: gta-api
+  namespace: gta-test
+spec:
+  host: gta-test.epfl.ch
+  path: /api
+  port:
+    targetPort: 5000-tcp
+  tls:
+    termination: edge
+  to:
+    kind: Service
+    name: gta-api-service
+    weight: 100
